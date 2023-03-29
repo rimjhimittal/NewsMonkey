@@ -34,7 +34,6 @@ export default class ParentComponent extends Component {
     )
   }
 }
-//
 class Navbar extends Component {
   render() {
     return (

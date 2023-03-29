@@ -7,7 +7,7 @@ export default class App extends Component {
   c = 'John';
   render() {
     return (
-      <div className='mx-5'>
+      <div >
         <Navbar />
         <News />
       </div>

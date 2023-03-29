@@ -38,7 +38,7 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-light bg-light justify-content-between">
+        <nav className="navbar navbar-dark bg-dark justify-content-between">
           <a className="navbar-brand" href='/'>News Application</a>
           <form className="form-inline">
             <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" 

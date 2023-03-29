@@ -12,14 +12,39 @@ export class News extends Component {
         }
     }
 
-async componentDidMount(){
-    console.log("npm");
-    let url ="https://newsapi.org/v2/top-headlines?country=in&apiKey=b819fd800df34377b1141fd3a3f69384";
+    async componentDidMount(){
+        console.log("npm");
+        let url ="https://newsapi.org/v2/top-headlines?country=in&apiKey=b819fd800df34377b1141fd3a3f69384&page=1";
+        let data = await fetch(url);
+        let parseData = await data.json();
+        console.log(parseData);
+        this.setState({articles: parseData.articles})
+    }
+    handlePrevClick=async ()=>{
+console.log("Hello me prev")
+    let url =`https://newsapi.org/v2/top-headlines?country=in&apiKey=b819fd800df34377b1141fd3a3f69384&page=${this.state.page -1}`;
     let data = await fetch(url);
     let parseData = await data.json();
     console.log(parseData);
-    this.setState({articles: parseData.articles})
-}
+    this.setState({
+        page: this.state.page -1,
+        articles: parseData.articles
+    })}
+
+    handleNextClick=async ()=>{
+console.log("Hello me next")
+    let url =`https://newsapi.org/v2/top-headlines?country=in&apiKey=b819fd800df34377b1141fd3a3f69384&page=${this.state.page + 1}`;
+    let data = await fetch(url);
+    let parseData = await data.json();
+    console.log(parseData);
+    this.setState({
+        page: this.state.page +1,
+        articles: parseData.articles
+})
+        
+    }
+
+
 
   render() {
 
@@ -37,7 +62,10 @@ async componentDidMount(){
 
     })}
     </div>
-</div>
+    <div class="d-flex justify-content-between">
+<button disabled={this.state.page<=1} type="button" class="btn btn-dark" onClick={this.handlePrevClick}>&larr; Previous</button>
+<button type="button" class="btn btn-dark" onClick={this.handleNextClick}>Next &rarr;</button>
+</div></div>
     )
   }
 
